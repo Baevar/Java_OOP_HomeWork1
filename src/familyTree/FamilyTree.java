@@ -5,13 +5,14 @@ import java.util.List;
 
 public class FamilyTree {
     List<Human> familyTree = new ArrayList<>();
-    private int id;
+
 
     public void addHuman (Human human) {
         familyTree.add(human);
     }
 
     public String printFamily(){
+        int id =0;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список членов семьи:\n");
         for (Human human : familyTree) {
@@ -43,6 +44,7 @@ public class FamilyTree {
     }
 
     public String printBaseInfoFamily(){
+        int id =0;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список членов семьи:\n");
         for (Human human : familyTree) {

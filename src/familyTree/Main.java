@@ -14,6 +14,8 @@ public class Main {
                 "Романов", "Петр", "Алексеевич",
                 "Михайлова","Екатерина","Алексеевна",
                 "29-12-1709", "05-01-1962","с.Коломенское");
+
+        Human human4 = new Human("Долгорукова","Мария","Владимировна","жен", "00-00-0000");
         System.out.println(human1);
         System.out.println(human2.getBaseAboutHuman());
 
@@ -21,6 +23,7 @@ public class Main {
         familyTree.addHuman(human1);
         familyTree.addHuman(human2);
         familyTree.addHuman(human3);
+        familyTree.addHuman(human4);
 
         System.out.println(familyTree.printFamily());
         System.out.println(familyTree.printBaseInfoFamily());

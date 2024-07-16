@@ -1,5 +1,6 @@
 package familyTree;
 
+import java.lang.invoke.StringConcatFactory;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,8 +72,9 @@ public class Human {
     public Human(String lastName,
                  String firstname,
                  String patronymic,
+                 String gender,
                  String dayBirth) {
-        this(lastName, firstname, patronymic, "---", "---", "---", "---", "---", "---", "---", dayBirth, "00-00-0000", "---");
+        this(lastName, firstname, patronymic, gender, "---", "---", "---", "---", "---", "---", dayBirth, "00-00-0000", "---");
     }
 
     public String getLastName() {
