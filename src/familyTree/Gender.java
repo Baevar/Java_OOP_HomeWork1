@@ -1,3 +1,6 @@
 package familyTree;
 
-enum Gender {}
+enum Gender {
+    male,
+    female
+}

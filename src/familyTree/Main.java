@@ -1,19 +1,28 @@
 package familyTree;
 
-import java.util.Calendar;
-
-import java.util.GregorianCalendar;
-
 public class Main {
     public static void main(String[] args) {
-       Calendar calendar = new GregorianCalendar(1992,4,12);
-        Human human1 = new Human("Сергей", "31-12-1991");
-        Human human2 = new Human("Марина", "17-04-1970","село Старая дорога");
-        Human human3 = new Human("Петр","01-01-1920","31-01-1990", "г. Москва");
+       Human human1 = new Human("Романов", "Иван", "Алексеевич", "муж",
+                "Романов", "Алексей", "Михайлович",
+                "Милославская","Мария","Ильинишна",
+                "06-09-1666", "08-02-1696","г.Москва");
+        Human human2 = new Human("Романов", "Петр", "Алексеевич", "муж",
+                "Романов", "Алексей", "Михайлович",
+                "Нарышкина","Наталья","Кирилловна",
+                "02-11-1721", "08-02-1725","г.Москва");
+        Human human3 = new Human("Романова", "Елизавета", "Петровна", "жен",
+                "Романов", "Петр", "Алексеевич",
+                "Михайлова","Екатерина","Алексеевна",
+                "29-12-1709", "05-01-1962","с.Коломенское");
+        System.out.println(human1);
+        System.out.println(human2.getBaseAboutHuman());
+
         FamilyTree familyTree = new FamilyTree();
         familyTree.addHuman(human1);
         familyTree.addHuman(human2);
         familyTree.addHuman(human3);
+
         System.out.println(familyTree.printFamily());
+        System.out.println(familyTree.printBaseInfoFamily());
     }
 }
