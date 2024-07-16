@@ -19,6 +19,7 @@ public class Main {
         System.out.println(human1);
         System.out.println(human2.getBaseAboutHuman());
 
+
         FamilyTree familyTree = new FamilyTree();
         familyTree.addHuman(human1);
         familyTree.addHuman(human2);
