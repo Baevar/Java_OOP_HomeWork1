@@ -1,80 +1,67 @@
 package familyTree;
 
-import java.lang.invoke.StringConcatFactory;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Human {
+
+    private long id;
     private String lastName;
     private String firstname;
     private String patronymic;
-    private String gender;
-    private String fatherLastName;
-    private String fatherFirstName;
-    private String fatherPatronymic;
-    private String motherLastName;
-    private String motherFirstName;
-    private String motherPatronymic;
-    private String dayBirth;
-    private String dayDeath;
-    private String placeBirth;
+    private Gender gender;
+    private LocalDate dayBirth;
+    private LocalDate dayDeath;
+    private Human father;
+    private Human mother;
+    private List<Human> children;
+    private String placeBorn;
 
-    {
-        lastName = "---";
-        firstname = "---";
-        patronymic = "---";
-        gender = "---";
-        fatherLastName = "---";
-        fatherFirstName = "---";
-        fatherPatronymic = "---";
-        motherLastName = "---";
-        motherFirstName = "---";
-        motherPatronymic = "---";
-        dayBirth = "00-00-0000";
-        dayDeath = "00-00-0000";
-        placeBirth = "---";
-    }
-
-    public Human(String lastName,
-                 String firstname,
-                 String patronymic,
-                 String gender,
-                 String fatherLastName,
-                 String fatherFirstName,
-                 String fatherPatronymic,
-                 String motherLastName,
-                 String motherFirstName,
-                 String motherPatronymic,
-                 String dayBirth,
-                 String dayDeath,
-                 String placeBirth) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        this.firstname = firstname;
-        this.patronymic = patronymic;
-        this.gender = gender;
-        this.fatherLastName = fatherLastName;
-        this.fatherFirstName = fatherFirstName;
-        this.fatherPatronymic = fatherPatronymic;
-        this.motherLastName = motherLastName;
-        this.motherFirstName = motherFirstName;
-        this.motherPatronymic = motherPatronymic;
-        if (isDateValid(dayBirth)) {
-            this.dayBirth = dayBirth;
-        }
-        if (isDateValid(dayDeath)) {
-            this.dayDeath = dayDeath;
-        }
-        this.placeBirth = placeBirth;
     }
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-    public Human(String lastName,
-                 String firstname,
-                 String patronymic,
-                 String gender,
-                 String dayBirth) {
-        this(lastName, firstname, patronymic, gender, "---", "---", "---", "---", "---", "---", dayBirth, "00-00-0000", "---");
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setDayBirth(LocalDate dayBirth) {
+        this.dayBirth = dayBirth;
+    }
+
+    public void setDayDeath(LocalDate dayDeath) {
+        this.dayDeath = dayDeath;
+    }
+
+    public void setFather(Human father) {
+        this.father = father;
+    }
+
+    public void setMother(Human mother) {
+        this.mother = mother;
+    }
+
+    public void setChildren(List<Human> children) {
+        this.children = children;
+    }
+
+    public void setPlaceBorn(String placeBorn) {
+        this.placeBorn = placeBorn;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getLastName() {
@@ -89,85 +76,107 @@ public class Human {
         return patronymic;
     }
 
-    public String getFatherLastName() {
-        return fatherLastName;
+    public Gender getGender() {
+        return gender;
     }
 
-    public String getFatherFirstName() {
-        return fatherFirstName;
-    }
-
-    public String getFatherPatronymic() {
-        return fatherPatronymic;
-    }
-
-    public String getMotherLastName() {
-        return motherLastName;
-    }
-
-    public String getMotherFirstName() {
-        return motherFirstName;
-    }
-
-    public String getMotherPatronymic() {
-        return motherPatronymic;
-    }
-
-    public String getDayBirth() {
+    public LocalDate getDayBirth() {
         return dayBirth;
     }
 
-    public String getDayDeath() {
+    public LocalDate getDayDeath() {
         return dayDeath;
     }
 
-    public String getPlaceBirth() {
-        return placeBirth;
+    public Human getFather() {
+        return father;
     }
 
-    public String getGender() {
-        return gender;
+    public Human getMother() {
+        return mother;
     }
+
+    public List<Human> getChildren() {
+        return children;
+    }
+
+    public String getPlaceBorn() {
+        return placeBorn;
+    }
+
+    public Human(String lastName, String firstname, String patronymic,
+                 Gender gender, LocalDate dayBirth, LocalDate dayDeath,
+                 Human father, Human mother, List<Human> children, String placeBorn) {
+        id = -1;
+        this.lastName = lastName;
+        this.firstname = firstname;
+        this.patronymic = patronymic;
+        this.gender = gender;
+
+        try {
+            this.dayBirth = dayBirth;
+        } catch (Exception ex) {
+            this.dayBirth = null;
+        }
+
+        try {
+            this.dayDeath = dayDeath;
+        } catch (Exception ex) {
+            this.dayDeath = null;
+        }
+
+        this.father = father;
+        this.mother = mother;
+        this.children = new ArrayList<>();
+        this.placeBorn = placeBorn;
+    }
+
+    public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth) {
+        this(lastName, firstname, patronymic, gender, dayBirth, null, null, null, null, null);
+    }
+
+    public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth, Human father, Human mother) {
+        this(lastName, firstname, patronymic, gender, dayBirth, null, father, mother, null, null);
+    }
+
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Фамилия: " + lastName + "\n");
-        stringBuilder.append("Имя: " + firstname + "\n");
-        stringBuilder.append("Отчество: " + patronymic + "\n");
-        stringBuilder.append("Пол: " + gender + "\n");
-        stringBuilder.append("Отец: " + fatherLastName + " " + fatherFirstName + " " + fatherPatronymic + "\n");
-        stringBuilder.append("Мать: " + motherLastName + " " + motherFirstName + " " + motherPatronymic + "\n");
-        stringBuilder.append("Дата рождения: " + dayBirth + "\n");
-        stringBuilder.append("Место рождения: " + placeBirth + "\n");
-        if (dayDeath != "00-00-0000") {
-            stringBuilder.append("Дата смерти: " + dayDeath + "\n");
-        }
+        stringBuilder.append("Фамилия: " + lastName + ", ");
+        stringBuilder.append("Имя: " + firstname + ", ");
+        stringBuilder.append("Отчество: " + patronymic + ", ");
+        stringBuilder.append("Пол: " + gender + ", ");
+        stringBuilder.append("Возраст:" + getAge(dayBirth, dayDeath));
 
         return stringBuilder.toString();
     }
 
-    public String getBaseAboutHuman() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Фамилия: " + lastName + "\n");
-        stringBuilder.append("Имя: " + firstname + "\n");
-        stringBuilder.append("Отчество: " + patronymic + "\n");
-        stringBuilder.append("Дата рождения: " + dayBirth + "\n");
-        if (dayDeath != "00-00-0000") {
-            stringBuilder.append("Дата смерти: " + dayDeath + "\n");
+    private int getAge(LocalDate dayBirth, LocalDate dayDeath) {
+        if (dayDeath != null) {
+            return (int) dayBirth.until(dayDeath, ChronoUnit.YEARS);
+        } else {
+            return (int) dayBirth.until(LocalDate.now(), ChronoUnit.YEARS);
         }
-        return stringBuilder.toString();
     }
 
-    private static boolean isDateValid(String date) {
-        try {
-            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-            df.setLenient(false);
-            df.parse(date);
-            return true;
-        } catch (ParseException e) {
-            return false;
+    public void addChild(Human child) {
+        if (!children.contains(child)) {
+            children.add(child);
         }
     }
+
+    private void addParent(Human human) {
+        if (human.getGender().equals(Gender.Male)) {
+            setFather(human);
+        }
+        if (human.getGender().equals(Gender.Female)) {
+            setMother(human);
+        }
+    }
+
 }
+
+
+
 
