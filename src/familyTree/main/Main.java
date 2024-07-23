@@ -1,14 +1,19 @@
 package familyTree.main;
 
+import familyTree.FileHandler.FileHandler;
 import familyTree.familyTree.FamilyTree;
 import familyTree.human.Gender;
 import familyTree.human.Human;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
+
+import static jdk.jfr.consumer.EventStream.openFile;
 
 public class Main {
+
+    final static String fileName = "src/familyTree/main/file.txt";
     public static void main(String[] args) throws IOException {
         Human human1 = new Human("Петров", "Валентин", "Петрович", Gender.Male,
                 LocalDate.of(1944, 4, 12), "г.Уфа");
@@ -45,19 +50,32 @@ public class Main {
         familyTree.addHuman(human6);
         familyTree.addHuman(human7);
 
+
         System.out.println(familyTree);
 
-        String fileName = "file.txt";
+        saveFile(familyTree);
 
-        FileHandler handler = new FileHandler();
-        handler.writer(familyTree,fileName);
+        FamilyTree newFamily = openFile();
+        System.out.println(newFamily);
 
-        FamilyTree familyRead = new FamilyTree();
 
-        familyRead = handler.reader(fileName);
-
-        System.out.println(familyRead);
 
 
     }
+
+    private static FamilyTree openFile() {
+
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.setFileName(fileName);
+        return (FamilyTree) fileHandler.openFile();
+    }
+
+    private static void saveFile(FamilyTree familyTree) {
+       FileHandler fileHandler = new FileHandler();
+        fileHandler.setFileName(fileName);
+        fileHandler.saveFile(familyTree);
+    }
+
+
+
 }
