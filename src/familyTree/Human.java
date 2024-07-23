@@ -20,6 +20,17 @@ public class Human {
     private List<Human> children;
     private String placeBorn;
 
+    {
+        lastName = null;
+        firstname = null;
+        patronymic = null;
+        gender = null;
+        dayBirth = null;
+        dayDeath = null;
+        placeBorn = null;
+
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -143,12 +154,51 @@ public class Human {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Фамилия: " + lastName + ", ");
-        stringBuilder.append("Имя: " + firstname + ", ");
-        stringBuilder.append("Отчество: " + patronymic + ", ");
-        stringBuilder.append("Пол: " + gender + ", ");
-        stringBuilder.append("Возраст:" + getAge(dayBirth, dayDeath));
-
+        if (lastName != null) {
+            stringBuilder.append("Фамилия: " + lastName + "; ");
+        } else {
+            stringBuilder.append("Фамилия: неизвестна; ");
+        }
+        if (firstname != null) {
+            stringBuilder.append("Имя: " + firstname + "; ");
+        } else {
+            stringBuilder.append("Имя: неизвестно; ");
+        }
+        if (patronymic != null) {
+            stringBuilder.append("Отчество: " + patronymic + "; ");
+        } else {
+            stringBuilder.append("Отчество: неизвестно; ");
+        }
+        if (gender != null) {
+            stringBuilder.append("Пол: " + gender + "; ");
+        } else {
+            stringBuilder.append("Пол: не указан; ");
+        }
+        if (dayBirth != null) {
+            stringBuilder.append("Возраст(лет):" + getAge(dayBirth, dayDeath) + "; ");
+        } else {
+            stringBuilder.append("Возраст: не известен;");
+        }
+        if (father != null) {
+            stringBuilder.append("Отец: " + getFIO(father) + "; ");
+        } else {
+            stringBuilder.append("Отец: не указан; ");
+        }
+        if (mother != null) {
+            stringBuilder.append("Мать: " + getFIO(mother) + "; ");
+        } else {
+            stringBuilder.append("Мать: не указана; ");
+        }
+        if (children.size() != 0) {
+            stringBuilder.append("Дети: " + getChildren(children) + "; ");
+        } else {
+            stringBuilder.append("Дети: не указаны; ");
+        }
+        if (placeBorn != null) {
+            stringBuilder.append("Место рождения: " + placeBorn + "; ");
+        } else {
+            stringBuilder.append("Место рождения: не указано;");
+        }
         return stringBuilder.toString();
     }
 
@@ -175,7 +225,30 @@ public class Human {
         }
     }
 
+    private String getFIO(Human human) {
+        String fio = "";
+        if (human.getLastName() != null) {
+            fio += human.getLastName();
+        }
+        if (!fio.equals("") && human.getFirstname() != null && human.getPatronymic() != null) {
+            fio += " "+ human.getFirstname().charAt(0) + "." + human.getPatronymic().charAt(0) + ".";
+        } else if (human.getFirstname() != null && human.getPatronymic() != null) {
+            fio += human.getFirstname() + " " + human.getPatronymic();
+        } else if(human.getPatronymic() != null) {
+            fio += human.getPatronymic();
+        }
+        return fio;
+    }
+
+    private String getChildren(List<Human> children) {
+        String res = "";
+        for (Human child : children) {
+            res += getFIO(child) + ",";
+        }
+        return res.substring(0, res.length() - 1);
+    }
 }
+
 
 
 

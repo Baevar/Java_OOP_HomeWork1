@@ -6,11 +6,13 @@ public class Main {
     public static void main(String[] args) {
        Human human1 = new Human("Романов", "Иван", "Алексеевич", Gender.Male,
                LocalDate.of(1971,10,19));
-        Human human2 = new Human("Романов", "Петр", "Алексеевич", Gender.Male,
+        Human human2 = new Human("Романов", null, null, Gender.Male,
                 LocalDate.of(1871,10,19));
         Human human3 = new Human("Романова", "Елизавета", "Петровна", Gender.Female,
                 LocalDate.of(1771,10,19));
 
+        human1.addChild(human2);
+        human1.addChild(human3);
 
         System.out.println(human1);
 
@@ -21,6 +23,6 @@ public class Main {
 
 
         System.out.println(familyTree);
-//        System.out.println(familyTree.printBaseInfoFamily());
+
     }
 }
