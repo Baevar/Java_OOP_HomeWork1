@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Human {
 
-    private long id;
     private String lastName;
     private String firstname;
     private String patronymic;
@@ -71,10 +71,6 @@ public class Human {
         this.placeBorn = placeBorn;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getLastName() {
         return lastName;
     }
@@ -118,7 +114,7 @@ public class Human {
     public Human(String lastName, String firstname, String patronymic,
                  Gender gender, LocalDate dayBirth, LocalDate dayDeath,
                  Human father, Human mother, List<Human> children, String placeBorn) {
-        id = -1;
+
         this.lastName = lastName;
         this.firstname = firstname;
         this.patronymic = patronymic;
@@ -148,6 +144,9 @@ public class Human {
 
     public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth, Human father, Human mother) {
         this(lastName, firstname, patronymic, gender, dayBirth, null, father, mother, null, null);
+    }
+    public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth, String placeBorn) {
+        this(lastName, firstname, patronymic, gender, dayBirth, null, null, null, null, placeBorn);
     }
 
 
@@ -202,7 +201,7 @@ public class Human {
         return stringBuilder.toString();
     }
 
-    private int getAge(LocalDate dayBirth, LocalDate dayDeath) {
+    public int getAge(LocalDate dayBirth, LocalDate dayDeath) {
         if (dayDeath != null) {
             return (int) dayBirth.until(dayDeath, ChronoUnit.YEARS);
         } else {
@@ -216,7 +215,7 @@ public class Human {
         }
     }
 
-    private void addParent(Human human) {
+    public void addParent(Human human) {
         if (human.getGender().equals(Gender.Male)) {
             setFather(human);
         }
@@ -225,7 +224,7 @@ public class Human {
         }
     }
 
-    private String getFIO(Human human) {
+    public String getFIO(Human human) {
         String fio = "";
         if (human.getLastName() != null) {
             fio += human.getLastName();
@@ -240,13 +239,35 @@ public class Human {
         return fio;
     }
 
-    private String getChildren(List<Human> children) {
+    public String getChildren(List<Human> children) {
         String res = "";
         for (Human child : children) {
             res += getFIO(child) + ",";
         }
         return res.substring(0, res.length() - 1);
     }
+
+    public List<Human> getParents() {
+        List<Human> parents = new ArrayList<>();
+        if(father!=null) {
+            parents.add(father);
+        }
+        if(mother!=null) {
+            parents.add(mother);
+        }
+        return parents;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return Objects.equals(lastName, human.lastName) && Objects.equals(firstname, human.firstname) && Objects.equals(patronymic, human.patronymic) && gender == human.gender && Objects.equals(dayBirth, human.dayBirth) && Objects.equals(dayDeath, human.dayDeath) && Objects.equals(placeBorn, human.placeBorn);
+    }
+
+
+
 }
 
 
