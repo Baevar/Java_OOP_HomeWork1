@@ -1,5 +1,6 @@
-package familyTree;
+package familyTree.human;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class Human {
+public class Human implements Serializable {
 
     private String lastName;
     private String firstname;
