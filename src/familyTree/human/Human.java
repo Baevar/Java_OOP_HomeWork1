@@ -10,6 +10,9 @@ import java.util.Objects;
 
 public class Human implements Serializable {
 
+
+
+    private long id;
     private String lastName;
     private String firstname;
     private String patronymic;
@@ -30,6 +33,10 @@ public class Human implements Serializable {
         dayDeath = null;
         placeBorn = null;
 
+    }
+
+    public void setID(long id) {
+        this.id = id;
     }
 
     public void setLastName(String lastName) {
@@ -110,6 +117,10 @@ public class Human implements Serializable {
 
     public String getPlaceBorn() {
         return placeBorn;
+    }
+
+    public Human() {
+
     }
 
     public Human(String lastName, String firstname, String patronymic,

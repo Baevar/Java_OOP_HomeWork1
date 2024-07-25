@@ -1,17 +1,20 @@
 package familyTree.familyTree;
 
 import familyTree.human.Human;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable {
+public class FamilyTree implements Serializable{
     private List<Human> familyTree = new ArrayList<>();
-    private static long id = 0;
+    private static long id;
 
     public boolean addHuman(Human human) {
         if (human == null) {
-            return false;}
+            return false;
+        }
         if (!familyTree.contains(human)) {
             familyTree.add(human);
             addToParent(human);
@@ -65,7 +68,7 @@ public class FamilyTree implements Serializable {
             } else {
                 stringBuilder.append("Мать: не указана; ");
             }
-            if (human.getChildren().size() != 0) {
+            if (human.getChildren() != null && human.getChildren().size() != 0) {
                 stringBuilder.append("Дети: " + human.getChildren(human.getChildren()) + "; ");
             } else {
                 stringBuilder.append("Дети: не указаны; ");
@@ -88,10 +91,16 @@ public class FamilyTree implements Serializable {
     }
 
     private void addToChildren(Human human) {
-        for (Human child : human.getChildren()) {
-            child.addParent(human);
+        if (human.getChildren() != null) {
+            for (Human child : human.getChildren()) {
+                child.addParent(human);
+            }
         }
     }
+
+
+
+
 
 
 }

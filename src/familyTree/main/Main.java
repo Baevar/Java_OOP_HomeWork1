@@ -4,6 +4,8 @@ import familyTree.FileHandler.FileHandler;
 import familyTree.familyTree.FamilyTree;
 import familyTree.human.Gender;
 import familyTree.human.Human;
+import familyTree.HumanBuilder.HumanBuilder;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -27,6 +29,7 @@ public class Main {
         Human human7 = new Human("Петров", "Виталий", "Дмитриевич", Gender.Male,
                 LocalDate.of(1993, 3, 7), "Сибирь");
 
+
         human1.addChild(human3);
         human1.addChild(human4);
         human2.addChild(human3);
@@ -38,6 +41,11 @@ public class Main {
 
         FamilyTree familyTree = new FamilyTree();
 
+        HumanBuilder humanBuilder = new HumanBuilder();
+
+        familyTree.addHuman(humanBuilder.setFirstname("Ваня").setLastName("Петров").setPatronymic("Дмитриевич").setDayBirth(LocalDate.of(1990, 9, 12)).setGender(Gender.Male).setFather(human3).build());
+        familyTree.addHuman(humanBuilder.setFirstname("Вася").setLastName("Петров").setPatronymic("Дмитриевич").setDayBirth(LocalDate.of(1990, 9, 12)).setGender(Gender.Male).setFather(human3).build());
+
         familyTree.addHuman(human1);
         familyTree.addHuman(human2);
         familyTree.addHuman(human3);
@@ -46,13 +54,16 @@ public class Main {
         familyTree.addHuman(human6);
         familyTree.addHuman(human7);
 
-
         System.out.println(familyTree);
 
         saveFile(familyTree);
 
         FamilyTree newFamily = openFile();
         System.out.println(newFamily);
+
+
+
+
     }
 
     private static FamilyTree openFile() {
@@ -62,7 +73,7 @@ public class Main {
     }
 
     private static void saveFile(FamilyTree familyTree) {
-       FileHandler fileHandler = new FileHandler();
+        FileHandler fileHandler = new FileHandler();
         fileHandler.setFileName(fileName);
         fileHandler.saveFile(familyTree);
     }
