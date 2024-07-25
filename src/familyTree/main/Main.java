@@ -13,56 +13,108 @@ public class Main {
     final static String fileName = "src/familyTree/main/file.txt";
 
     public static void main(String[] args) throws IOException {
-        Human human1 = new Human("Петров", "Валентин", "Петрович", Gender.Male,
-                LocalDate.of(1944, 4, 12), "г.Уфа");
-        Human human2 = new Human("Петрова", "Галина", "Николаеына", Gender.Female,
-                LocalDate.of(1949, 8, 6), "Сибирь");
-        Human human3 = new Human("Петров", "Дмитрий", "Валентинович", Gender.Male,
-                LocalDate.of(1970, 11, 6), "Сибирь");
-        Human human4 = new Human("Смирнова", "Татьяна", "Валентиновна", Gender.Female,
-                LocalDate.of(1974, 3, 23), "Сибирь");
-        Human human5 = new Human("Петров", "Олег", "Дмитриевич", Gender.Male,
-                LocalDate.of(1991, 10, 19), "Сибирь");
-        Human human6 = new Human("Петрова", "Марина", "Сергеевна", Gender.Female,
-                LocalDate.of(1969, 8, 23), "г. Казань");
-        human6.setDayBirth(LocalDate.of(1996, 11, 11));
-        Human human7 = new Human("Петров", "Виталий", "Дмитриевич", Gender.Male,
-                LocalDate.of(1993, 3, 7), "Сибирь");
-
-
-        human1.addChild(human3);
-        human1.addChild(human4);
-        human2.addChild(human3);
-        human2.addChild(human4);
-        human3.addChild(human5);
-        human3.addChild(human7);
-        human6.addChild(human5);
-        human6.addChild(human7);
 
         FamilyTree familyTree = new FamilyTree();
-
         HumanBuilder humanBuilder = new HumanBuilder();
 
-        familyTree.addHuman(humanBuilder.setFirstname("Ваня").setLastName("Петров").setPatronymic("Дмитриевич").setDayBirth(LocalDate.of(1990, 9, 12)).setGender(Gender.Male).setFather(human3).build());
-        familyTree.addHuman(humanBuilder.setFirstname("Вася").setLastName("Петров").setPatronymic("Дмитриевич").setDayBirth(LocalDate.of(1990, 9, 12)).setGender(Gender.Male).setFather(human3).build());
+        familyTree.addHuman(humanBuilder
+                .setLastName("Петров")
+                .setFirstname("Валентин")
+                .setPatronymic("Петрович")
+                .setGender(Gender.Male)
+                .setDayBirth(LocalDate.of(1944, 4, 12))
+                .setDayDeath(null)
+                .setFather(null)
+                .setMother(null)
+                .setChildren(null)
+                .setPlaceBorn("г.Уфа")
+                .build());
 
-        familyTree.addHuman(human1);
-        familyTree.addHuman(human2);
-        familyTree.addHuman(human3);
-        familyTree.addHuman(human4);
-        familyTree.addHuman(human5);
-        familyTree.addHuman(human6);
-        familyTree.addHuman(human7);
+        familyTree.addHuman(humanBuilder
+                .setLastName("Петрова")
+                .setFirstname("Галина")
+                .setPatronymic("Николаевна")
+                .setGender(Gender.Female)
+                .setDayBirth(LocalDate.of(1949, 8, 6))
+                .setDayDeath(null)
+                .setFather(null)
+                .setMother(null)
+                .setChildren(null)
+                .setPlaceBorn("Сибирь")
+                .build());
+
+        familyTree.addHuman(humanBuilder
+                .setLastName("Петров")
+                .setFirstname("Дмитрий")
+                .setPatronymic("Валентинович")
+                .setGender(Gender.Male)
+                .setDayBirth(LocalDate.of(1970, 11, 6))
+                .setDayDeath(null)
+                .setFather(familyTree.getHuman(0))
+                .setMother(familyTree.getHuman(1))
+                .setChildren(null)
+                .setPlaceBorn("Сибирь")
+                .build());
+
+        familyTree.addHuman(humanBuilder
+                .setLastName("Смирнова")
+                .setFirstname("Татьяна")
+                .setPatronymic("Валентиновна")
+                .setGender(Gender.Female)
+                .setDayBirth(LocalDate.of(1974, 3, 23))
+                .setDayDeath(null)
+                .setFather(familyTree.getHuman(0))
+                .setMother(familyTree.getHuman(1))
+                .setChildren(null)
+                .setPlaceBorn("Сибирь")
+                .build());
+
+        familyTree.addHuman(humanBuilder
+                .setLastName("Петрова")
+                .setFirstname("Марина")
+                .setPatronymic("Сергеевна")
+                .setGender(Gender.Female)
+                .setDayBirth(LocalDate.of(1969, 8, 23))
+                .setDayDeath(LocalDate.of(1995, 1, 15))
+                .setFather(null)
+                .setMother(null)
+                .setChildren(null)
+                .setPlaceBorn("г. Казань")
+                .build());
+
+        familyTree.addHuman(humanBuilder
+                .setLastName("Петров")
+                .setFirstname("Олег")
+                .setPatronymic("Дмитриевич")
+                .setGender(Gender.Male)
+                .setDayBirth(LocalDate.of(1991, 10, 19))
+                .setDayDeath(null)
+                .setFather(familyTree.getHuman(2))
+                .setMother(familyTree.getHuman(4))
+                .setChildren(null)
+                .setPlaceBorn("Сибирь")
+                .build());
+
+
+
+        familyTree.addHuman(humanBuilder
+                .setLastName("Петров")
+                .setFirstname("Виталий")
+                .setPatronymic("Дмитриевич")
+                .setGender(Gender.Male)
+                .setDayBirth(LocalDate.of(1993, 3, 7))
+                .setDayDeath(null)
+                .setFather(familyTree.getHuman(2))
+                .setMother(familyTree.getHuman(4))
+                .setChildren(null)
+                .setPlaceBorn("Сибирь")
+                .build());
+
 
         System.out.println(familyTree);
-
         saveFile(familyTree);
-
         FamilyTree newFamily = openFile();
         System.out.println(newFamily);
-
-
-
 
     }
 

@@ -23,18 +23,20 @@ public class HumanBuilder {
 
 
     public HumanBuilder() {
-
-    }
+   }
 
     private void createHuman() {
         human = new Human();
+
     }
 
     private void createLastName() {
+
         human.setLastName(lastName);
     }
 
     private void createFirstName() {
+
         human.setFirstname(firstname);
     }
 
@@ -47,11 +49,19 @@ public class HumanBuilder {
     }
 
     private void createDayBirth() {
-        human.setDayBirth(dayBirth);
+        try {
+            human.setDayBirth(dayBirth);
+        } catch (Exception ex) {
+            human.setDayBirth(null);
+        }
     }
 
     private void createDayDeath() {
-        human.setDayDeath(dayDeath);
+        try {
+            human.setDayDeath(dayDeath);
+        } catch (Exception ex) {
+            human.setDayDeath(null);
+        }
     }
 
     private void createFather() {
@@ -67,6 +77,7 @@ public class HumanBuilder {
     }
 
     private void createPlaceBorn() {
+        human.setPlaceBorn(null);
         human.setPlaceBorn(placeBorn);
     }
 
@@ -76,6 +87,7 @@ public class HumanBuilder {
     }
 
     public HumanBuilder setFirstname(String firstname) {
+        this.firstname = null;
         this.firstname = firstname;
         return this;
     }
@@ -116,16 +128,18 @@ public class HumanBuilder {
     }
 
     public HumanBuilder setPlaceBorn(String placeBorn) {
+        this.placeBorn = null;
         this.placeBorn = placeBorn;
         return this;
     }
 
+    private void setHumID(Human human) {
+     human.setID(humID++);
 
-    private void incID(Human human) {
-        human.setID(this.humID++);
     }
 
     public Human build() {
+
         createHuman();
         createLastName();
         createFirstName();
@@ -137,7 +151,7 @@ public class HumanBuilder {
         createMother();
         createChildren();
         createPlaceBorn();
-        incID(human);
+        setHumID(human);
         return human;
     }
 

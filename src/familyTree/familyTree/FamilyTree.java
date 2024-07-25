@@ -4,12 +4,10 @@ import familyTree.human.Human;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable{
+public class FamilyTree implements Serializable {
     private List<Human> familyTree = new ArrayList<>();
-    private static long id;
 
     public boolean addHuman(Human human) {
         if (human == null) {
@@ -27,12 +25,12 @@ public class FamilyTree implements Serializable{
 
     @Override
     public String toString() {
-        int id = 0;
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список членов семьи:\n");
         for (Human human : familyTree) {
-            id++;
-            stringBuilder.append(id + ". ");
+
+            stringBuilder.append(human.getID() + ". ");
             if (human.getLastName() != null) {
                 stringBuilder.append("Фамилия: " + human.getLastName() + "; ");
             } else {
@@ -98,9 +96,16 @@ public class FamilyTree implements Serializable{
         }
     }
 
-
-
-
+    public Human getHuman(long id) {
+        if (familyTree != null) {
+            for (Human human : familyTree) {
+                if (human.getID() == id) {
+                    return human;
+                }
+            }
+        }
+        return null;
+    }
 
 
 }

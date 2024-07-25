@@ -11,7 +11,6 @@ import java.util.Objects;
 public class Human implements Serializable {
 
 
-
     private long id;
     private String lastName;
     private String firstname;
@@ -32,6 +31,7 @@ public class Human implements Serializable {
         dayBirth = null;
         dayDeath = null;
         placeBorn = null;
+        children = null;
 
     }
 
@@ -119,6 +119,11 @@ public class Human implements Serializable {
         return placeBorn;
     }
 
+    public long getID() {
+        return id;
+    }
+
+
     public Human() {
 
     }
@@ -149,18 +154,6 @@ public class Human implements Serializable {
         this.children = new ArrayList<>();
         this.placeBorn = placeBorn;
     }
-
-    public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth) {
-        this(lastName, firstname, patronymic, gender, dayBirth, null, null, null, null, null);
-    }
-
-    public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth, Human father, Human mother) {
-        this(lastName, firstname, patronymic, gender, dayBirth, null, father, mother, null, null);
-    }
-    public Human(String lastName, String firstname, String patronymic, Gender gender, LocalDate dayBirth, String placeBorn) {
-        this(lastName, firstname, patronymic, gender, dayBirth, null, null, null, null, placeBorn);
-    }
-
 
     @Override
     public String toString() {
@@ -222,6 +215,9 @@ public class Human implements Serializable {
     }
 
     public void addChild(Human child) {
+        if (children == null) {
+            children = new ArrayList<>();
+        }
         if (!children.contains(child)) {
             children.add(child);
         }
@@ -242,10 +238,10 @@ public class Human implements Serializable {
             fio += human.getLastName();
         }
         if (!fio.equals("") && human.getFirstname() != null && human.getPatronymic() != null) {
-            fio += " "+ human.getFirstname().charAt(0) + "." + human.getPatronymic().charAt(0) + ".";
+            fio += " " + human.getFirstname().charAt(0) + "." + human.getPatronymic().charAt(0) + ".";
         } else if (human.getFirstname() != null && human.getPatronymic() != null) {
             fio += human.getFirstname() + " " + human.getPatronymic();
-        } else if(human.getPatronymic() != null) {
+        } else if (human.getPatronymic() != null) {
             fio += human.getPatronymic();
         }
         return fio;
@@ -261,10 +257,10 @@ public class Human implements Serializable {
 
     public List<Human> getParents() {
         List<Human> parents = new ArrayList<>();
-        if(father!=null) {
+        if (father != null) {
             parents.add(father);
         }
-        if(mother!=null) {
+        if (mother != null) {
             parents.add(mother);
         }
         return parents;
@@ -277,8 +273,6 @@ public class Human implements Serializable {
         Human human = (Human) o;
         return Objects.equals(lastName, human.lastName) && Objects.equals(firstname, human.firstname) && Objects.equals(patronymic, human.patronymic) && gender == human.gender && Objects.equals(dayBirth, human.dayBirth) && Objects.equals(dayDeath, human.dayDeath) && Objects.equals(placeBorn, human.placeBorn);
     }
-
-
 
 }
 
