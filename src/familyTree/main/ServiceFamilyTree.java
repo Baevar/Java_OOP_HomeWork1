@@ -1,5 +1,6 @@
 package familyTree.main;
 
+import familyTree.FileHandler.FileHandler;
 import familyTree.HumanBuilder.HumanBuilder;
 import familyTree.familyTree.FamilyTree;
 import familyTree.human.Gender;
@@ -13,7 +14,7 @@ public class ServiceFamilyTree {
     private FamilyTree familyTree;
     private HumanBuilder humanBuilder;
 
-    public ServiceFamilyTree(){
+    public ServiceFamilyTree() {
         familyTree = new FamilyTree();
         humanBuilder = new HumanBuilder();
 
@@ -21,7 +22,7 @@ public class ServiceFamilyTree {
 
     public void addHuman(String lastName, String firstname, String patronymic,
                          Gender gender, LocalDate dayBirth, LocalDate dayDeath,
-                         Human father, Human mother, List<Human> children, String placeBorn){
+                         Human father, Human mother, List<Human> children, String placeBorn) {
         Human human = humanBuilder
                 .setLastName(lastName)
                 .setFirstname(firstname)
@@ -35,6 +36,36 @@ public class ServiceFamilyTree {
                 .setPlaceBorn(placeBorn)
                 .build();
         familyTree.addHuman(human);
+    }
+
+    public void getFamilyTree() {
+        System.out.println(familyTree.toString());
+    }
+
+    public Human getHuman(long id) {
+        return familyTree.getHuman(id);
+    }
+
+    public boolean saveFile(String fileName) {
+        try {
+            FileHandler fileHandler = new FileHandler();
+            fileHandler.setFileName(fileName);
+            fileHandler.saveFile(familyTree);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public boolean openFile(String fileName) {
+        try {
+            FileHandler fileHandler = new FileHandler();
+            fileHandler.setFileName(fileName);
+            familyTree = (FamilyTree) fileHandler.openFile();
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
 }
