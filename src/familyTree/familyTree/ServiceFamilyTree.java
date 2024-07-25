@@ -1,12 +1,10 @@
-package familyTree.main;
+package familyTree.familyTree;
 
 import familyTree.FileHandler.FileHandler;
 import familyTree.HumanBuilder.HumanBuilder;
-import familyTree.familyTree.FamilyTree;
 import familyTree.human.Gender;
 import familyTree.human.Human;
 
-import java.lang.management.PlatformLoggingMXBean;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -42,6 +40,16 @@ public class ServiceFamilyTree {
         System.out.println(familyTree.toString());
     }
 
+    public String getfamilyTreeList(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Список семейного двера: \n");
+
+        for (Human human : familyTree) {
+         stringBuilder.append(human).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
     public Human getHuman(long id) {
         return familyTree.getHuman(id);
     }
@@ -67,5 +75,6 @@ public class ServiceFamilyTree {
             return false;
         }
     }
+
 
 }

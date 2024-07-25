@@ -1,9 +1,7 @@
 package familyTree.main;
 
-import familyTree.FileHandler.FileHandler;
-import familyTree.familyTree.FamilyTree;
+import familyTree.familyTree.ServiceFamilyTree;
 import familyTree.human.Gender;
-import familyTree.HumanBuilder.HumanBuilder;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -42,5 +40,8 @@ public class Main {
     ServiceFamilyTree serviceFamilyTreeNEW = new ServiceFamilyTree();
     serviceFamilyTreeNEW.openFile("src/familyTree/main/file.txt");
     serviceFamilyTreeNEW.getFamilyTree();
+
+        System.out.println(serviceFamilyTreeNEW.getfamilyTreeList());
+
    }
 }

@@ -158,6 +158,7 @@ public class Human implements Serializable {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getID() + ". ");
         if (lastName != null) {
             stringBuilder.append("Фамилия: " + lastName + "; ");
         } else {
@@ -193,7 +194,7 @@ public class Human implements Serializable {
         } else {
             stringBuilder.append("Мать: не указана; ");
         }
-        if (children.size() != 0) {
+        if (getChildren() != null && children.size() != 0) {
             stringBuilder.append("Дети: " + getChildren(children) + "; ");
         } else {
             stringBuilder.append("Дети: не указаны; ");
