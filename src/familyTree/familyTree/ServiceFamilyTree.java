@@ -50,6 +50,10 @@ public class ServiceFamilyTree {
         return stringBuilder.toString();
     }
 
+    public void sortByName(){
+        familyTree.sortByName();
+    }
+
     public Human getHuman(long id) {
         return familyTree.getHuman(id);
     }

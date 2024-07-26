@@ -4,6 +4,7 @@ import familyTree.human.Human;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -108,14 +109,20 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         return null;
     }
 
+public void sortByName(){
+    Collections.sort(familyTree);
+}
+
+public void sortByAge(){
+
+}
+
+
 
     @Override
     public Iterator<Human> iterator() {
         return new HumanIterator(familyTree);
     }
-
-
-
 
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class Human implements Serializable {
+public class Human implements Serializable, Comparable<Human> {
 
 
     private long id;
@@ -275,6 +275,10 @@ public class Human implements Serializable {
         return Objects.equals(lastName, human.lastName) && Objects.equals(firstname, human.firstname) && Objects.equals(patronymic, human.patronymic) && gender == human.gender && Objects.equals(dayBirth, human.dayBirth) && Objects.equals(dayDeath, human.dayDeath) && Objects.equals(placeBorn, human.placeBorn);
     }
 
+    @Override
+    public int compareTo(Human o) {
+        return firstname.compareTo(o.firstname);
+    }
 }
 
 

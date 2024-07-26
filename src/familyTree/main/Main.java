@@ -42,6 +42,7 @@ public class Main {
     serviceFamilyTreeNEW.getFamilyTree();
 
         System.out.println(serviceFamilyTreeNEW.getfamilyTreeList());
-
+        serviceFamilyTreeNEW.sortByName();
+        System.out.println(serviceFamilyTreeNEW.getfamilyTreeList());
    }
 }
