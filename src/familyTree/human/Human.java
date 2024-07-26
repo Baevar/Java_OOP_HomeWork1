@@ -208,11 +208,15 @@ public class Human implements Serializable, Comparable<Human> {
     }
 
     public int getAge() {
-        if (dayDeath != null) {
+        if (dayBirth == null) {
+            return 0;
+        }
+        else if (dayDeath != null) {
             return (int) dayBirth.until(dayDeath, ChronoUnit.YEARS);
         } else {
             return (int) dayBirth.until(LocalDate.now(), ChronoUnit.YEARS);
         }
+
     }
 
     public void addChild(Human child) {

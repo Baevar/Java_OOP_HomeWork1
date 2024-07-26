@@ -36,6 +36,18 @@ public class ServiceFamilyTree {
         familyTree.addHuman(human);
     }
 
+    public void addHuman(String lastName, String firstname, String patronymic,
+                         Gender gender) {
+        Human human = humanBuilder
+                .setLastName(lastName)
+                .setFirstname(firstname)
+                .setPatronymic(patronymic)
+                .setGender(gender)
+               .build();
+        familyTree.addHuman(human);
+    }
+
+
     public void getFamilyTree() {
         System.out.println(familyTree.toString());
     }

@@ -16,7 +16,7 @@ public class Main {
                 Gender.Male, LocalDate.of(1944, 4, 12), null, null, null, null, "г.Уфа");
 
         service.addHuman("Петрова", "Галина", "Николаевна",
-                Gender.Female, LocalDate.of(1949, 8, 6), null, null, null, null, "Сибирь");
+                Gender.Female,LocalDate.of(1949, 8, 6), null, null, null, null, "Сибирь");
 
         service.addHuman("Петров", "Дмитрий", "Валентинович",
                 Gender.Male, LocalDate.of(1970, 11, 6), null, service.getHuman(0), service.getHuman(1), null, "Сибирь");

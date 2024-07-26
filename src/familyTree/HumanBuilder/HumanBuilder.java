@@ -23,7 +23,7 @@ public class HumanBuilder {
 
 
     public HumanBuilder() {
-   }
+    }
 
     private void createHuman() {
         human = new Human();
@@ -134,12 +134,24 @@ public class HumanBuilder {
     }
 
     private void setHumID(Human human) {
-     human.setID(humID++);
+        human.setID(humID++);
 
     }
 
-    public Human build() {
+    private void clearData() {
+        lastName = null;
+        patronymic = null;
+        gender = null;
+        dayBirth = null;
+        dayDeath = null;
+        father = null;
+        mother = null;
+        children = null;
+        placeBorn = null;
+    }
 
+
+    public Human build() {
         createHuman();
         createLastName();
         createFirstName();
@@ -152,6 +164,7 @@ public class HumanBuilder {
         createChildren();
         createPlaceBorn();
         setHumID(human);
+        clearData();
         return human;
     }
 
