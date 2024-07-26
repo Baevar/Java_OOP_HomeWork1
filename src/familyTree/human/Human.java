@@ -180,7 +180,7 @@ public class Human implements Serializable, Comparable<Human> {
             stringBuilder.append("Пол: не указан; ");
         }
         if (dayBirth != null) {
-            stringBuilder.append("Возраст(лет):" + getAge(dayBirth, dayDeath) + "; ");
+            stringBuilder.append("Возраст(лет):" + getAge() + "; ");
         } else {
             stringBuilder.append("Возраст: не известен;");
         }
@@ -207,7 +207,7 @@ public class Human implements Serializable, Comparable<Human> {
         return stringBuilder.toString();
     }
 
-    public int getAge(LocalDate dayBirth, LocalDate dayDeath) {
+    public int getAge() {
         if (dayDeath != null) {
             return (int) dayBirth.until(dayDeath, ChronoUnit.YEARS);
         } else {
@@ -279,6 +279,7 @@ public class Human implements Serializable, Comparable<Human> {
     public int compareTo(Human o) {
         return firstname.compareTo(o.firstname);
     }
+
 }
 
 

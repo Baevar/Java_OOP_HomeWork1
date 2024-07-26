@@ -1,6 +1,8 @@
 package familyTree.familyTree;
 
 import familyTree.human.Human;
+import familyTree.human.HumanComporatorByAge;
+import familyTree.human.HumanComporatorByName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,7 +56,7 @@ public class FamilyTree implements Serializable, Iterable<Human> {
                 stringBuilder.append("Пол: не указан; ");
             }
             if (human.getDayBirth() != null) {
-                stringBuilder.append("Возраст(лет):" + human.getAge(human.getDayBirth(), human.getDayDeath()) + "; ");
+                stringBuilder.append("Возраст(лет):" + human.getAge() + "; ");
             } else {
                 stringBuilder.append("Возраст: не известен;");
             }
@@ -109,15 +111,13 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         return null;
     }
 
-public void sortByName(){
-    Collections.sort(familyTree);
-}
+    public void sortByName() {
+        Collections.sort(familyTree, new HumanComporatorByName());
+    }
 
-public void sortByAge(){
-
-}
-
-
+    public void sortByAge() {
+        Collections.sort(familyTree, new HumanComporatorByAge());
+    }
 
     @Override
     public Iterator<Human> iterator() {

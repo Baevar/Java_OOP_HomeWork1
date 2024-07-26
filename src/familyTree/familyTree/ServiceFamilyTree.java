@@ -54,6 +54,10 @@ public class ServiceFamilyTree {
         familyTree.sortByName();
     }
 
+    public void sortByAge(){
+        familyTree.sortByAge();
+    }
+
     public Human getHuman(long id) {
         return familyTree.getHuman(id);
     }
