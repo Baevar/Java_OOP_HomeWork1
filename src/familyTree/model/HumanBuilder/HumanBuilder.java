@@ -1,8 +1,8 @@
-package familyTree.HumanBuilder;
+package familyTree.model.HumanBuilder;
 
-import familyTree.familyTree.FamilyTreeItem;
-import familyTree.human.Gender;
-import familyTree.human.Human;
+import familyTree.model.HumanBuilder.familyTree.FamilyTreeItem;
+import familyTree.model.HumanBuilder.human.Gender;
+import familyTree.model.HumanBuilder.human.Human;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,7 +1,7 @@
-package familyTree.familyTree;
+package familyTree.model.HumanBuilder.familyTree;
 
-import familyTree.human.HumanComporatorByAge;
-import familyTree.human.HumanComporatorByName;
+import familyTree.model.HumanBuilder.human.HumanComporatorByAge;
+import familyTree.model.HumanBuilder.human.HumanComporatorByName;
 
 import java.io.Serializable;
 import java.util.ArrayList;

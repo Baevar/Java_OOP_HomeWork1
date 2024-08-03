@@ -1,7 +1,7 @@
 package familyTree.main;
 
-import familyTree.familyTree.ServiceFamilyTree;
-import familyTree.human.Gender;
+import familyTree.model.HumanBuilder.familyTree.ServiceFamilyTree;
+import familyTree.model.HumanBuilder.human.Gender;
 
 import java.io.IOException;
 import java.time.LocalDate;
