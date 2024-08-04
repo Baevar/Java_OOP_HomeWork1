@@ -1,25 +1,25 @@
 package familyTree.model.HumanBuilder;
 
-import familyTree.model.HumanBuilder.familyTree.FamilyTreeItem;
-import familyTree.model.HumanBuilder.human.Gender;
-import familyTree.model.HumanBuilder.human.Human;
+import familyTree.model.familyTree.FamilyTreeItem;
+import familyTree.model.human.Gender;
+import familyTree.model.human.Human;
 
 import java.time.LocalDate;
 import java.util.List;
 
 
-public class HumanBuilder<E extends FamilyTreeItem<E>> {
+public class HumanBuilder {
     private long humID;
-    private E human;
+    private Human human;
     private String lastName;
     private String firstname;
     private String patronymic;
     private Gender gender;
     private LocalDate dayBirth;
     private LocalDate dayDeath;
-    private E father;
-    private E mother;
-    private List<E> children;
+    private Human father;
+    private Human mother;
+    private List<Human> children;
     private String placeBorn;
 
 
@@ -28,7 +28,7 @@ public class HumanBuilder<E extends FamilyTreeItem<E>> {
     }
 
     private void createHuman() {
-human =(E) new Human();
+human = new Human();
     }
 
     private void createLastName() {
@@ -112,17 +112,17 @@ human =(E) new Human();
         return this;
     }
 
-    public HumanBuilder setFather(E father) {
+    public HumanBuilder setFather(Human father) {
         this.father = father;
         return this;
     }
 
-    public HumanBuilder setMother(E mother) {
+    public HumanBuilder setMother(Human mother) {
         this.mother = mother;
         return this;
     }
 
-    public HumanBuilder setChildren(List<E> children) {
+    public HumanBuilder setChildren(List<Human> children) {
         this.children = children;
         return this;
     }
@@ -132,7 +132,7 @@ human =(E) new Human();
         return this;
     }
 
-    private void setHumID(E human) {
+    private void setHumID(Human human) {
         human.setID(humID++);
 
     }
@@ -150,7 +150,7 @@ human =(E) new Human();
     }
 
 
-    public E build() {
+    public Human build() {
         createHuman();
         createLastName();
         createFirstName();

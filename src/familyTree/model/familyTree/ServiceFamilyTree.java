@@ -1,27 +1,28 @@
-package familyTree.model.HumanBuilder.familyTree;
+package familyTree.model.familyTree;
 
-import familyTree.model.HumanBuilder.FileHandler.FileHandler;
 import familyTree.model.HumanBuilder.HumanBuilder;
-import familyTree.model.HumanBuilder.human.Gender;
+import familyTree.model.FileHandler.FileHandler;
+import familyTree.model.human.Gender;
+import familyTree.model.human.Human;
 
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class ServiceFamilyTree<E extends FamilyTreeItem<E>> {
-    private FamilyTree<E> familyTree;
-    private HumanBuilder<E> humanBuilder;
+public class ServiceFamilyTree {
+    private FamilyTree<Human> familyTree;
+    private HumanBuilder humanBuilder;
 
     public ServiceFamilyTree() {
         familyTree = new FamilyTree<>();
-        humanBuilder = new HumanBuilder<>();
+        humanBuilder = new HumanBuilder();
 
     }
 
     public void addHuman(String lastName, String firstname, String patronymic,
                          Gender gender, LocalDate dayBirth, LocalDate dayDeath,
-                         E father, E mother, List<E> children, String placeBorn) {
-        E human = (E) humanBuilder
+                         Human father, Human mother, List<Human> children, String placeBorn) {
+        Human human = humanBuilder
                 .setLastName(lastName)
                 .setFirstname(firstname)
                 .setPatronymic(patronymic)
@@ -38,7 +39,7 @@ public class ServiceFamilyTree<E extends FamilyTreeItem<E>> {
 
     public void addHuman(String lastName, String firstname, String patronymic,
                          Gender gender) {
-        E human = (E) humanBuilder
+        Human human = humanBuilder
                 .setLastName(lastName)
                 .setFirstname(firstname)
                 .setPatronymic(patronymic)
@@ -52,11 +53,15 @@ public class ServiceFamilyTree<E extends FamilyTreeItem<E>> {
         System.out.println(familyTree.toString());
     }
 
+    public String getFamilyTreeList() {
+        return familyTree.toString();
+    }
+
     public String getfamilyTreeList(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список семейного двера: \n");
 
-        for (E human : familyTree) {
+        for (Human human : familyTree) {
          stringBuilder.append(human).append("\n");
         }
         return stringBuilder.toString();
@@ -70,7 +75,7 @@ public class ServiceFamilyTree<E extends FamilyTreeItem<E>> {
         familyTree.sortByAge();
     }
 
-    public E getHuman(long id) {
+    public Human getHuman(long id) {
         return familyTree.getHuman(id);
     }
 
@@ -81,6 +86,7 @@ public class ServiceFamilyTree<E extends FamilyTreeItem<E>> {
             fileHandler.saveFile(familyTree);
             return true;
         } catch (Exception ex) {
+            System.out.println("Ошибка сохранения");
             return false;
         }
     }
