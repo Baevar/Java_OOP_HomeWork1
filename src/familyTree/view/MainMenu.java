@@ -10,11 +10,16 @@ public class MainMenu {
 
     public MainMenu(ConsoleUI consoleUI) {
         commands = new ArrayList<>();
-        commands.add(new addHuman(consoleUI));
-        commands.add(new SortbyName(consoleUI));
+        commands.add(new AddHuman(consoleUI));
+        commands.add(new SortByName(consoleUI));
         commands.add(new SortByAge(consoleUI));
+        commands.add(new SortByID(consoleUI));
+        commands.add(new AddParent(consoleUI));
         commands.add(new GetFamilyTree(consoleUI));
+        commands.add(new SaveTree(consoleUI));
+        commands.add(new LoadTree(consoleUI));
         commands.add(new Finish(consoleUI));
+
     }
 
     public String menuInfo(){

@@ -4,6 +4,7 @@ import familyTree.model.HumanBuilder.HumanBuilder;
 import familyTree.model.FileHandler.FileHandler;
 import familyTree.model.human.Gender;
 import familyTree.model.human.Human;
+import familyTree.model.human.HumanComporatorByAge;
 
 
 import java.time.LocalDate;
@@ -49,29 +50,47 @@ public class ServiceFamilyTree {
     }
 
 
+    public void addParent(int idHuman, int idParent) {
+        if (idParent < familyTreeSize() && idHuman < familyTreeSize()) {
+            Human human = familyTree.getHuman(idHuman);
+            Human parent = familyTree.getHuman(idParent);
+//TODO Закончил здесь. РАзобраться с выводом детей и родителей при добавлении.
+            human.addParent(parent);
+            parent.addChild(human);
+        }
+    }
+
+    private int familyTreeSize() {
+        int count = 0;
+        for (Human human : familyTree) {
+            count++;
+        }
+        return count;
+    }
+
     public void getFamilyTree() {
         System.out.println(familyTree.toString());
     }
 
     public String getFamilyTreeList() {
-        return familyTree.toString();
-    }
-
-    public String getfamilyTreeList(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список семейного двера: \n");
 
         for (Human human : familyTree) {
-         stringBuilder.append(human).append("\n");
+            stringBuilder.append(human).append("\n");
         }
         return stringBuilder.toString();
     }
 
-    public void sortByName(){
+    public void sortByName() {
         familyTree.sortByName();
     }
 
-    public void sortByAge(){
+    public void sortByID() {
+        familyTree.sortByID();
+    }
+
+    public void sortByAge() {
         familyTree.sortByAge();
     }
 

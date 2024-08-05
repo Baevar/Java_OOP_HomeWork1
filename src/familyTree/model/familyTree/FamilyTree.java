@@ -1,6 +1,7 @@
 package familyTree.model.familyTree;
 
 import familyTree.model.human.HumanComporatorByAge;
+import familyTree.model.human.HumanComporatorByID;
 import familyTree.model.human.HumanComporatorByName;
 
 import java.io.Serializable;
@@ -85,13 +86,13 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
 
     }
 
-    private void addToParent(E human) {
+    public void addToParent(E human) {
         for (E parent : human.getParents()) {
             parent.addChild(human);
         }
     }
 
-    private void addToChildren(E human) {
+    public void addToChildren(E human) {
         if (human.getChildren() != null) {
             for (E child : human.getChildren()) {
                 child.addParent(human);
@@ -116,6 +117,10 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
 
     public void sortByAge() {
         Collections.sort(familyTree, new HumanComporatorByAge<>());
+    }
+
+    public void sortByID() {
+        Collections.sort(familyTree, new HumanComporatorByID<>());
     }
 
     @Override

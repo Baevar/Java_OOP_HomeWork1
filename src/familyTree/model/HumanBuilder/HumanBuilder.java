@@ -28,7 +28,7 @@ public class HumanBuilder {
     }
 
     private void createHuman() {
-human = new Human();
+        human = new Human();
     }
 
     private void createLastName() {
@@ -132,7 +132,7 @@ human = new Human();
         return this;
     }
 
-    private void setHumID(Human human) {
+    public void setHumID(Human human) {
         human.setID(humID++);
 
     }

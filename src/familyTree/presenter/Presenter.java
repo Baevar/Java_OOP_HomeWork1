@@ -23,7 +23,11 @@ public class Presenter {
         service.addHuman(lastName, firstname, patronymic,
                 gender, dayBirth, dayDeath,
                 null, null, null, placeBorn);
+        getFamilyTree();
+    }
 
+    public void sortByID() {
+        service.sortByID();
         getFamilyTree();
     }
 
@@ -41,4 +45,31 @@ public class Presenter {
         String answer = service.getFamilyTreeList();
         view.PrintAnwser(answer);
     }
+
+    public void saveFile() {
+        try {
+            service.saveFile("src/familyTree/file.txt");
+            System.out.println("Программа успешно сохранена");
+        } catch (Exception e) {
+            System.out.println("Ошибка сохранения");
+        } finally {
+            getFamilyTree();
+        }
+    }
+
+    public void addParent(int idHuman,int idParent){
+        service.addParent(idHuman, idParent);
+    }
+
+
+    public void loadFile() {
+        try {
+            service.openFile("src/familyTree/file.txt");
+            System.out.println("Семейное древо успешно загружено");
+            getFamilyTree();
+        } catch (Exception e) {
+            System.out.println("Ошибка открытия");
+        }
+    }
+
 }

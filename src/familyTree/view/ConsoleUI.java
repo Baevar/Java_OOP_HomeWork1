@@ -43,6 +43,10 @@ public class ConsoleUI implements View {
         presenter.getFamilyTree();
     }
 
+    public void sortByID() {
+        presenter.sortByID();
+    }
+
     public void sortByAge() {
         presenter.sortByAge();
     }
@@ -50,6 +54,28 @@ public class ConsoleUI implements View {
     public void sortByName() {
         presenter.sortByName();
     }
+
+    public void saveTree() {
+        presenter.saveFile();
+    }
+
+    public void loadTree() {
+        presenter.loadFile();
+    }
+
+    public void addParent() {
+        int idHuman;
+        int idParent;
+        try {
+            idHuman = Integer.parseInt(idHuman());
+            idParent = Integer.parseInt(idParent());
+            presenter.addParent(idHuman, idParent);
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода id");
+        }
+
+    }
+
 
     public void addHuman() {
         System.out.println("Введите Имя");
@@ -90,6 +116,22 @@ public class ConsoleUI implements View {
 
     }
 
+    public String idHuman() {
+        System.out.println("Введите id человека");
+        return scanner.nextLine();
+    }
+
+    public String idChild() {
+        System.out.println("Введите id ребенка");
+        return scanner.nextLine();
+    }
+
+    public String idParent() {
+        System.out.println("Введите id родителя");
+        return scanner.nextLine();
+    }
+
+
     private LocalDate getData(String year, String month, String day) {
         LocalDate date;
         try {
@@ -100,7 +142,7 @@ public class ConsoleUI implements View {
 
             return date;
         } catch (Exception e) {
-             return null;
+            return null;
         }
     }
 

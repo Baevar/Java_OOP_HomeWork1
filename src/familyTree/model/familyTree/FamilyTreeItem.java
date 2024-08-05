@@ -16,6 +16,7 @@ public interface FamilyTreeItem<E> extends Serializable {
     E getFather();
     E getMother();
     List<E> getChildren();
+//    String getChildrens();
     String getPlaceBorn();
     long getID();
     int getAge();

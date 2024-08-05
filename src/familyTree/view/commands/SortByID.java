@@ -2,16 +2,16 @@ package familyTree.view.commands;
 
 import familyTree.view.ConsoleUI;
 
-public class addHuman extends Command{
+public class SortByID extends Command{
     private String description;
     private ConsoleUI consoleUI;
 
-    public addHuman(ConsoleUI consoleUI) {
-        super("Добавить человека", consoleUI);
+    public SortByID(ConsoleUI consoleUI) {
+        super("Сортировать по ID", consoleUI);
     }
 
     @Override
     public void execute() {
-    getConsoleUI().addHuman();
+        getConsoleUI().sortByID();
     }
 }
