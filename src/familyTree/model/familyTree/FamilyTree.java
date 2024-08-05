@@ -115,6 +115,16 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
         Collections.sort(familyTree, new HumanComporatorByName<>());
     }
 
+    public long findMaxID() {
+        long maxID = 0;
+        for (E e : familyTree) {
+            if (maxID < e.getID()) {
+                maxID = e.getID();
+            }
+        }
+        return maxID;
+    }
+
     public void sortByAge() {
         Collections.sort(familyTree, new HumanComporatorByAge<>());
     }

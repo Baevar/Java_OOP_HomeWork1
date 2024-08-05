@@ -78,11 +78,10 @@ public class HumanBuilder {
     }
 
     private void createPlaceBorn() {
-        human.setPlaceBorn(null);
         human.setPlaceBorn(placeBorn);
     }
 
-    public HumanBuilder setLastName(String lastName) {
+   public HumanBuilder setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -132,9 +131,13 @@ public class HumanBuilder {
         return this;
     }
 
-    public void setHumID(Human human) {
+    private void setHumID(Human human) {
         human.setID(humID++);
 
+    }
+
+    public void setMaxID(long maxID) {
+        this.humID = maxID+1;
     }
 
     private void clearData() {

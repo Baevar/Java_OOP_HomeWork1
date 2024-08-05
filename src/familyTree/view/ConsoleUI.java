@@ -76,6 +76,18 @@ public class ConsoleUI implements View {
 
     }
 
+    public void addChild() {
+        int idHuman;
+        int idChild;
+        try {
+            idHuman = Integer.parseInt(idHuman());
+            idChild = Integer.parseInt(idChild());
+            presenter.addChild(idHuman, idChild);
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода id");
+        }
+
+    }
 
     public void addHuman() {
         System.out.println("Введите Имя");

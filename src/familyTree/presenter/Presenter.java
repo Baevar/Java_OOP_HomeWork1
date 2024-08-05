@@ -59,12 +59,19 @@ public class Presenter {
 
     public void addParent(int idHuman,int idParent){
         service.addParent(idHuman, idParent);
+        getFamilyTree();
+    }
+
+    public void addChild(int idHuman,int idChild){
+        service.addChild(idHuman, idChild);
+        getFamilyTree();
     }
 
 
     public void loadFile() {
         try {
             service.openFile("src/familyTree/file.txt");
+            service.setMaxID();
             System.out.println("Семейное древо успешно загружено");
             getFamilyTree();
         } catch (Exception e) {

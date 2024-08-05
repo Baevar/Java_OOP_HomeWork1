@@ -23,6 +23,7 @@ public class ServiceFamilyTree {
     public void addHuman(String lastName, String firstname, String patronymic,
                          Gender gender, LocalDate dayBirth, LocalDate dayDeath,
                          Human father, Human mother, List<Human> children, String placeBorn) {
+
         Human human = humanBuilder
                 .setLastName(lastName)
                 .setFirstname(firstname)
@@ -54,9 +55,18 @@ public class ServiceFamilyTree {
         if (idParent < familyTreeSize() && idHuman < familyTreeSize()) {
             Human human = familyTree.getHuman(idHuman);
             Human parent = familyTree.getHuman(idParent);
-//TODO Закончил здесь. РАзобраться с выводом детей и родителей при добавлении.
+
             human.addParent(parent);
             parent.addChild(human);
+        }
+    }
+
+    public void addChild(int idHuman, int idChild) {
+        if (idChild < familyTreeSize() && idHuman < familyTreeSize()) {
+            Human human = familyTree.getHuman(idHuman);
+            Human child = familyTree.getHuman(idChild);
+            human.addChild(child);
+            child.addParent(human);
         }
     }
 
@@ -119,6 +129,11 @@ public class ServiceFamilyTree {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    public void setMaxID() {
+        long maxID = familyTree.findMaxID();
+        humanBuilder.setMaxID(maxID);
     }
 
 
