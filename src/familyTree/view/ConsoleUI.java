@@ -90,13 +90,13 @@ public class ConsoleUI implements View {
     }
 
     public void addHuman() {
-        System.out.println("Введите Имя");
+        System.out.println("Введите Имя (Обязательно)");
         String firstName = scanner.nextLine();
-        System.out.println("Введите Фамилию");
+        System.out.println("Введите Фамилию(Обязательно)");
         String lastName = scanner.nextLine();
-        System.out.println("Введите Отчество");
+        System.out.println("Введите Отчество(Обязательно)");
         String patronymic = scanner.nextLine();
-        System.out.println("Введите пол (Male или Female)");
+        System.out.println("Введите пол (Male или Female) (Обязательно)");
         Gender gender;
         try {
             gender = Gender.valueOf(scanner.nextLine());
@@ -122,9 +122,12 @@ public class ConsoleUI implements View {
         LocalDate dataBirth, dataDeath;
         dataBirth = getData(yearBirth, monthBirth, dayBirth);
         dataDeath = getData(yearDeath, monthDeath, dayDeath);
-
-        presenter.addHuman(lastName, firstName, patronymic, gender, dataBirth,
-                dataDeath, null, null, null, placeBorn);
+        if (lastName != "" && firstName!= "" && patronymic !="" && gender!=null) {
+            presenter.addHuman(lastName, firstName, patronymic, gender, dataBirth,
+                    dataDeath, null, null, null, placeBorn);
+        }else {
+            error();
+        }
 
     }
 

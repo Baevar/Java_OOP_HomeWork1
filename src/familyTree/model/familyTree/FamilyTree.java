@@ -33,54 +33,9 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Список членов семьи:\n");
         for (E human : familyTree) {
-
-            stringBuilder.append(human.getID() + ". ");
-            if (human.getLastName() != null) {
-                stringBuilder.append("Фамилия: " + human.getLastName() + "; ");
-            } else {
-                stringBuilder.append("Фамилия: неизвестна; ");
-            }
-            if (human.getFirstname() != null) {
-                stringBuilder.append("Имя: " + human.getFirstname() + "; ");
-            } else {
-                stringBuilder.append("Имя: неизвестно; ");
-            }
-            if (human.getPatronymic() != null) {
-                stringBuilder.append("Отчество: " + human.getPatronymic() + "; ");
-            } else {
-                stringBuilder.append("Отчество: неизвестно; ");
-            }
-            if (human.getGender() != null) {
-                stringBuilder.append("Пол: " + human.getGender() + "; ");
-            } else {
-                stringBuilder.append("Пол: не указан; ");
-            }
-            if (human.getDayBirth() != null) {
-                stringBuilder.append("Возраст(лет):" + human.getAge() + "; ");
-            } else {
-                stringBuilder.append("Возраст: не известен;");
-            }
-            if (human.getFather() != null) {
-                stringBuilder.append("Отец: " + human.getFIO(human.getFather()) + "; ");
-            } else {
-                stringBuilder.append("Отец: не указан; ");
-            }
-            if (human.getMother() != null) {
-                stringBuilder.append("Мать: " + human.getFIO(human.getMother()) + "; ");
-            } else {
-                stringBuilder.append("Мать: не указана; ");
-            }
-            if (human.getChildren() != null && human.getChildren().size() != 0) {
-                stringBuilder.append("Дети: " + human.getChildren() + "; ");
-            } else {
-                stringBuilder.append("Дети: не указаны; ");
-            }
-            if (human.getPlaceBorn() != null) {
-                stringBuilder.append("Место рождения: " + human.getPlaceBorn() + "; ");
-            } else {
-                stringBuilder.append("Место рождения: не указано;");
-            }
+            stringBuilder.append(human);
             stringBuilder.append("\n");
+
         }
         return stringBuilder.toString();
 

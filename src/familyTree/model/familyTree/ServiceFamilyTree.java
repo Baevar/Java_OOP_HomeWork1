@@ -4,7 +4,7 @@ import familyTree.model.HumanBuilder.HumanBuilder;
 import familyTree.model.FileHandler.FileHandler;
 import familyTree.model.human.Gender;
 import familyTree.model.human.Human;
-import familyTree.model.human.HumanComporatorByAge;
+
 
 
 import java.time.LocalDate;
